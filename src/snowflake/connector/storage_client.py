@@ -445,9 +445,10 @@ class SnowflakeStorageClient(ABC):
     def delete_client_data(self) -> None:
         """Deletes the tmp_dir and closes the source stream belonging to this client.
         This function is idempotent."""
-        if os.path.exists(self.tmp_dir):
-            logger.debug(f"cleaning up tmp dir: {self.tmp_dir}")
-            shutil.rmtree(self.tmp_dir)
+        with self.lock:
+            if os.path.exists(self.tmp_dir):
+                logger.debug(f"cleaning up tmp dir: {self.tmp_dir}")
+                shutil.rmtree(self.tmp_dir)
         if self.meta.src_stream and not self.meta.src_stream.closed:
             self.meta.src_stream.close()
 
