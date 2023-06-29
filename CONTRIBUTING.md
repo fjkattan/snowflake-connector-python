@@ -33,3 +33,8 @@ tox --devenv venv37 -e py37
 Note: we suggest using the lowest supported Python version for development.
 
 To run tests, please see our [testing README](test/README.md).
+
+## Contributor License Agreement ("CLA")
+
+To accept your pull request, we need you to submit a CLA. We realize that the CLA link listed by the bot is temporarily broken. We are working to fix it.
+
